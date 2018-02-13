@@ -1,0 +1,65 @@
+first(Symbol s) {
+	res = [];
+	if(s is TERM) {
+		return [s];
+	}
+	
+	for(rule in Rules) {
+		if(rule.left == s) {
+			rfs = rule.right[0];
+			if(rfs is TERM) {
+				res.add(rfs)
+			} else {
+				res.addAll(first(rfs));
+			}
+		}
+	}
+	
+	return res;
+}
+
+
+item[] closure(item[] items) {
+	bool changed = false;
+	item[] retItems = items.clone()
+	
+	while(!changed) {
+		changed = false;
+		for(item i in items) {
+			if(i.marked_token is NON_TERM) {
+				for(rule in Rules) {
+					for(symbol s in first(i.rule.right[i.marker + 1])) {
+						retItems.add(new rule(i.marked_token, s))
+						changed = true;
+					}
+				}
+			}
+		}
+	}
+	
+	return retItems;
+}
+
+// or shift()
+item[] goto(item[] items, symbol s) {
+	item[] ret = new item[];
+	
+	for(item in items)	 {
+		ret.add(new item(rule: item.rule, maker: item.marker + 1))
+	}
+	
+	return closure(ret);
+}
+
+ArrayList<Map<Symbol, int>> goto
+
+items[][] items() {
+	bool changed = false;
+	item[][] items_family;
+	items_family.add([new Item(START_RULE, 0)])
+	
+	while(!changed) {
+		changed = true;
+		
+	}
+}

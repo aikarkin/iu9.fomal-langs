@@ -1,0 +1,36 @@
+digraph task2_1 {
+  //rankdir="LR";
+
+  Q00;    Q10;    Q20;    Q30; 
+  Q01;    Q11;    Q21;    Q31;
+  Q02;    Q12;    Q22;    Q32;
+  Q03;    Q13;    Q23;    Qf;
+  
+  Q00 -> Q01 [label="0..9"];
+  Q01 -> Q02 [label="0..9"];
+  Q02 -> Q03 [label="0..9"];
+  Q02 -> Q10 [label="."];
+  QO1 -> Q10 [label="."];
+  Q03 -> Q10 [label="."];
+
+  Q10 -> Q11 [label="0..9"];
+  Q11 -> Q12 [label="0..9"];
+  Q12 -> Q13 [label="0..9"];
+  Q12 -> Q20 [label="."];
+  Q11 -> Q20 [label="."];
+  Q13 -> Q20 [label="."];
+
+  Q20 -> Q21 [label="0..9"];
+  Q21 -> Q22 [label="0..9"];
+  Q22 -> Q23 [label="0..9"];
+  Q22 -> Q30 [label="."];
+  Q21 -> Q30 [label="."];
+  Q23 -> Q30 [label="."];
+
+  Q30 -> Q31 [label="0..9"];
+  Q31 -> Q32 [label="0..9"];
+  Q32 -> Q33 [label="0..9"];
+  Q32 -> Qf [label="e"];
+  Q31 -> Qf [label="e"];
+  Q33 -> Qf [label="e"];
+}

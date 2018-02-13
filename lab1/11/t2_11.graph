@@ -1,0 +1,31 @@
+digraph task2_11 {
+	rankdir=LR;
+  q0; q1;  q2; q3;  q4; 
+  q5;  q6; q7;  q8; q9;  
+  q10;  q11;  q12;  q13;  
+  q14;  q15;  qf;
+
+
+  q0 -> q1 [label="8"];
+  q1 -> q2 [label="("];
+  q2 -> q3 [label="0,..,9"];
+  q3 -> q4 [label="0,..,9"];  
+  q4 -> q5 [label="0,..,9"];
+  q5 -> q6 [label=")"];
+
+  q6 -> q7 [label="0,..,9"];
+  q7 -> q8 [label="0,..,9"];  
+  q8 -> q9 [label="0,..,9"];
+  q9 -> q10 [label="-"];
+  q10 -> q11 [label="0,..,9"];
+
+  q11 -> q12 [label="0,..,9"];
+  q12 -> q13 [label="-"];
+  q13 -> q14 [label="0,..,9"];
+  q14 -> q15 [label="0,..,9"];
+  q15 -> qf [label="ε"];
+  
+	{ rank=same; q0 q1 q2 q3 q4 q5 };
+  { rank=same; q6 q7 q8 q9 q10 q11 };
+  { rank=same; q12 q13 q14 q15 qf }
+}

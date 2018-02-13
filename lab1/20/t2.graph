@@ -1,0 +1,32 @@
+digraph task2_1 {
+	rankdir="LR";
+
+	Q0; Q1; Q2; Q3; Q4; Q5; Q6; Q7; Q8; Q9; Q10; Q11; Q12; Q13; Q14; Q15; Q16; Q17; Q18; Q19; Q20;
+	
+	Q0 -> Q1 [label="i", color="red"];
+	Q1 -> Q2 [label="f", color="red"];
+	
+	Q0 -> Q3 [label="e", color="red"];
+	Q3 -> Q4 [label="l", color="red"];
+	Q4 -> Q5 [label="s", color="red"];
+	Q5 -> Q6 [label="e", color="red"];
+	
+	Q0 -> Q7 [label="s", color="red"];
+	Q7 -> Q8 [label="w", color="red"];
+	Q8 -> Q9 [label="i", color="red"];
+	Q9 -> Q10 [label="t", color="red"];
+	Q10 -> Q11 [label="c", color="red"];
+	Q11 -> Q12 [label="h", color="red"];
+	
+	Q0 -> Q13 [label="w", color="red"];
+	Q13 -> Q14 [label="h", color="red"];
+	Q14 -> Q15 [label="i", color="red"];
+	Q15 -> Q16 [label="l", color="red"];
+	Q16 -> Q17 [label="e", color="red"];
+	
+	Q0 -> Q18 [label="f", color="red"];
+	Q18 -> Q19 [label="o", color="red"];
+	Q19 -> Q20 [label="r", color="red"];
+	
+	
+}

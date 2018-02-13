@@ -1,0 +1,540 @@
+SOURCE: 
+####################
+
+/**
+ * Created by alex on 26.10.17.
+ */
+
+var apiServHost = "http://10.42.0.1:8008";
+
+function createTree($place, tree) {
+  if (!$place instanceof jQuery) {
+    throw new Error("Invalid 1st argument. It must be instance of jQuery");
+  }
+
+  var queue = [];
+  var $parent = $place,
+    $icon = null,
+    tmp,
+    next;
+
+  var elem = tree;
+  var start = true;
+
+  var x = .51e-10;
+
+  while (start || queue.length !== 0) {
+    if (queue.length > 0) {
+      next = queue.shift();
+      $parent = next.jQuery;
+      elem = next.elem;
+      if (start) start = false;
+    }
+    if (!start) {
+      $icon = $("<a><span class=\"fa category\"></span></a>");
+      $parent.prepend($icon);
+    }
+    if (elem.hasOwnProperty("categories") && elem.categories.length > 0) {
+      if ($icon) {
+        $icon.children("span").addClass("has-child");
+      }
+      tmp = $("<ul></ul>").appendTo($parent);
+      for (var i in elem["categories"]) {
+        var child = elem["categories"][i];
+        var $child = $("<li></li>").html("<a>" + child.name + "</a>").data("id", child.id);
+        tmp.append($child);
+        queue.push({ elem: child, jQuery: $child });
+      }
+    }
+  }
+}
+
+####################
+TOKENS:
+
+{token: "/**
+ * Created by alex on 26.10.17.
+ */", type: COMMENT, position: 1:1}
+{token: "\n", type: NEWLINE, position: 3:32}
+{token: "\n", type: NEWLINE, position: 4:1}
+{token: "var", type: KEYWORD, position: 5:1}
+{token: "apiServHost", type: IDENTIFIER, position: 5:4}
+{token: "=", type: PUNCTUATOR, position: 5:16}
+{token: "\"http://10.42.0.1:8008\"", type: STRING_LITERAL, position: 5:18}
+{token: ";", type: PUNCTUATOR, position: 5:42}
+{token: "\n", type: NEWLINE, position: 5:43}
+{token: "\n", type: NEWLINE, position: 6:1}
+{token: "function", type: KEYWORD, position: 7:1}
+{token: "createTree", type: IDENTIFIER, position: 7:9}
+{token: "(", type: PUNCTUATOR, position: 7:20}
+{token: "$place", type: IDENTIFIER, position: 7:21}
+{token: ",", type: PUNCTUATOR, position: 7:27}
+{token: "tree", type: IDENTIFIER, position: 7:28}
+{token: ")", type: PUNCTUATOR, position: 7:33}
+{token: "{", type: PUNCTUATOR, position: 7:34}
+{token: "\n", type: NEWLINE, position: 7:36}
+{token: "if", type: KEYWORD, position: 8:1}
+{token: "(", type: PUNCTUATOR, position: 8:5}
+{token: "!", type: PUNCTUATOR, position: 8:7}
+{token: "$place", type: IDENTIFIER, position: 8:8}
+{token: "instanceof", type: KEYWORD, position: 8:14}
+{token: "jQuery", type: IDENTIFIER, position: 8:25}
+{token: ")", type: PUNCTUATOR, position: 8:32}
+{token: "{", type: PUNCTUATOR, position: 8:33}
+{token: "\n", type: NEWLINE, position: 8:35}
+{token: "throw", type: KEYWORD, position: 9:1}
+{token: "new", type: KEYWORD, position: 9:10}
+{token: "Error", type: IDENTIFIER, position: 9:14}
+{token: "(", type: PUNCTUATOR, position: 9:20}
+{token: "\"Invalid 1st argument. It must be instance of jQuery\"", type: STRING_LITERAL, position: 9:21}
+{token: ")", type: PUNCTUATOR, position: 9:74}
+{token: ";", type: PUNCTUATOR, position: 9:75}
+{token: "\n", type: NEWLINE, position: 9:76}
+{token: "}", type: PUNCTUATOR, position: 10:1}
+{token: "\n", type: NEWLINE, position: 10:4}
+{token: "\n", type: NEWLINE, position: 11:1}
+{token: "var", type: KEYWORD, position: 12:1}
+{token: "queue", type: IDENTIFIER, position: 12:6}
+{token: "=", type: PUNCTUATOR, position: 12:12}
+{token: "[", type: PUNCTUATOR, position: 12:14}
+{token: "]", type: PUNCTUATOR, position: 12:16}
+{token: ";", type: PUNCTUATOR, position: 12:17}
+{token: "\n", type: NEWLINE, position: 12:18}
+{token: "var", type: KEYWORD, position: 13:1}
+{token: "$parent", type: IDENTIFIER, position: 13:6}
+{token: "=", type: PUNCTUATOR, position: 13:14}
+{token: "$place", type: IDENTIFIER, position: 13:16}
+{token: ",", type: PUNCTUATOR, position: 13:23}
+{token: "\n", type: NEWLINE, position: 13:24}
+{token: "$icon", type: IDENTIFIER, position: 14:1}
+{token: "=", type: PUNCTUATOR, position: 14:10}
+{token: "null", type: NULL_LITERAL, position: 14:12}
+{token: ",", type: PUNCTUATOR, position: 14:17}
+{token: "\n", type: NEWLINE, position: 14:18}
+{token: "tmp", type: IDENTIFIER, position: 15:1}
+{token: ",", type: PUNCTUATOR, position: 15:8}
+{token: "\n", type: NEWLINE, position: 15:9}
+{token: "next", type: IDENTIFIER, position: 16:1}
+{token: ";", type: PUNCTUATOR, position: 16:9}
+{token: "\n", type: NEWLINE, position: 16:10}
+{token: "\n", type: NEWLINE, position: 17:1}
+{token: "var", type: KEYWORD, position: 18:1}
+{token: "elem", type: IDENTIFIER, position: 18:6}
+{token: "=", type: PUNCTUATOR, position: 18:11}
+{token: "tree", type: IDENTIFIER, position: 18:13}
+{token: ";", type: PUNCTUATOR, position: 18:18}
+{token: "\n", type: NEWLINE, position: 18:19}
+{token: "var", type: KEYWORD, position: 19:1}
+{token: "start", type: IDENTIFIER, position: 19:6}
+{token: "=", type: PUNCTUATOR, position: 19:12}
+{token: "true", type: BOOLEAN_LITERAL, position: 19:14}
+{token: ";", type: PUNCTUATOR, position: 19:19}
+{token: "\n", type: NEWLINE, position: 19:20}
+{token: "\n", type: NEWLINE, position: 20:1}
+{token: "var", type: KEYWORD, position: 21:1}
+{token: "x", type: IDENTIFIER, position: 21:6}
+{token: "=", type: PUNCTUATOR, position: 21:8}
+{token: ".51e-10", type: NUMERIC_LITERAL, position: 21:10}
+{token: ";", type: PUNCTUATOR, position: 21:18}
+{token: "\n", type: NEWLINE, position: 21:19}
+{token: "\n", type: NEWLINE, position: 22:1}
+{token: "while", type: KEYWORD, position: 23:1}
+{token: "(", type: PUNCTUATOR, position: 23:8}
+{token: "start", type: IDENTIFIER, position: 23:10}
+{token: "||", type: PUNCTUATOR, position: 23:15}
+{token: "queue", type: IDENTIFIER, position: 23:18}
+{token: ".", type: PUNCTUATOR, position: 23:24}
+{token: "length", type: IDENTIFIER, position: 23:25}
+{token: "!==", type: PUNCTUATOR, position: 23:31}
+{token: "0", type: NUMERIC_LITERAL, position: 23:35}
+{token: ")", type: PUNCTUATOR, position: 23:37}
+{token: "{", type: PUNCTUATOR, position: 23:38}
+{token: "\n", type: NEWLINE, position: 23:40}
+{token: "if", type: KEYWORD, position: 24:1}
+{token: "(", type: PUNCTUATOR, position: 24:7}
+{token: "queue", type: IDENTIFIER, position: 24:9}
+{token: ".", type: PUNCTUATOR, position: 24:14}
+{token: "length", type: IDENTIFIER, position: 24:15}
+{token: ">", type: PUNCTUATOR, position: 24:21}
+{token: "0", type: NUMERIC_LITERAL, position: 24:23}
+{token: ")", type: PUNCTUATOR, position: 24:25}
+{token: "{", type: PUNCTUATOR, position: 24:26}
+{token: "\n", type: NEWLINE, position: 24:28}
+{token: "next", type: IDENTIFIER, position: 25:1}
+{token: "=", type: PUNCTUATOR, position: 25:11}
+{token: "queue", type: IDENTIFIER, position: 25:13}
+{token: ".", type: PUNCTUATOR, position: 25:19}
+{token: "shift", type: IDENTIFIER, position: 25:20}
+{token: "(", type: PUNCTUATOR, position: 25:25}
+{token: ")", type: PUNCTUATOR, position: 25:26}
+{token: ";", type: PUNCTUATOR, position: 25:27}
+{token: "\n", type: NEWLINE, position: 25:28}
+{token: "$parent", type: IDENTIFIER, position: 26:1}
+{token: "=", type: PUNCTUATOR, position: 26:14}
+{token: "next", type: IDENTIFIER, position: 26:16}
+{token: ".", type: PUNCTUATOR, position: 26:21}
+{token: "jQuery", type: IDENTIFIER, position: 26:22}
+{token: ";", type: PUNCTUATOR, position: 26:28}
+{token: "\n", type: NEWLINE, position: 26:29}
+{token: "elem", type: IDENTIFIER, position: 27:1}
+{token: "=", type: PUNCTUATOR, position: 27:11}
+{token: "next", type: IDENTIFIER, position: 27:13}
+{token: ".", type: PUNCTUATOR, position: 27:18}
+{token: "elem", type: IDENTIFIER, position: 27:19}
+{token: ";", type: PUNCTUATOR, position: 27:23}
+{token: "\n", type: NEWLINE, position: 27:24}
+{token: "if", type: KEYWORD, position: 28:1}
+{token: "(", type: PUNCTUATOR, position: 28:9}
+{token: "start", type: IDENTIFIER, position: 28:11}
+{token: ")", type: PUNCTUATOR, position: 28:16}
+{token: "start", type: IDENTIFIER, position: 28:17}
+{token: "=", type: PUNCTUATOR, position: 28:23}
+{token: "false", type: BOOLEAN_LITERAL, position: 28:25}
+{token: ";", type: PUNCTUATOR, position: 28:31}
+{token: "\n", type: NEWLINE, position: 28:32}
+{token: "}", type: PUNCTUATOR, position: 29:1}
+{token: "\n", type: NEWLINE, position: 29:6}
+{token: "if", type: KEYWORD, position: 30:1}
+{token: "(", type: PUNCTUATOR, position: 30:7}
+{token: "!", type: PUNCTUATOR, position: 30:9}
+{token: "start", type: IDENTIFIER, position: 30:10}
+{token: ")", type: PUNCTUATOR, position: 30:15}
+{token: "{", type: PUNCTUATOR, position: 30:16}
+{token: "\n", type: NEWLINE, position: 30:18}
+{token: "$icon", type: IDENTIFIER, position: 31:1}
+{token: "=", type: PUNCTUATOR, position: 31:12}
+{token: "$", type: IDENTIFIER, position: 31:14}
+{token: "(", type: PUNCTUATOR, position: 31:16}
+{token: "\"<a><span class=\\"fa category\\"></span></a>\"", type: STRING_LITERAL, position: 31:17}
+{token: ")", type: PUNCTUATOR, position: 31:61}
+{token: ";", type: PUNCTUATOR, position: 31:62}
+{token: "\n", type: NEWLINE, position: 31:63}
+{token: "$parent", type: IDENTIFIER, position: 32:1}
+{token: ".", type: PUNCTUATOR, position: 32:14}
+{token: "prepend", type: IDENTIFIER, position: 32:15}
+{token: "(", type: PUNCTUATOR, position: 32:22}
+{token: "$icon", type: IDENTIFIER, position: 32:23}
+{token: ")", type: PUNCTUATOR, position: 32:28}
+{token: ";", type: PUNCTUATOR, position: 32:29}
+{token: "\n", type: NEWLINE, position: 32:30}
+{token: "}", type: PUNCTUATOR, position: 33:1}
+{token: "\n", type: NEWLINE, position: 33:6}
+{token: "if", type: KEYWORD, position: 34:1}
+{token: "(", type: PUNCTUATOR, position: 34:7}
+{token: "elem", type: IDENTIFIER, position: 34:9}
+{token: ".", type: PUNCTUATOR, position: 34:13}
+{token: "hasOwnProperty", type: IDENTIFIER, position: 34:14}
+{token: "(", type: PUNCTUATOR, position: 34:28}
+{token: "\"categories\"", type: STRING_LITERAL, position: 34:29}
+{token: ")", type: PUNCTUATOR, position: 34:41}
+{token: "&&", type: PUNCTUATOR, position: 34:42}
+{token: "elem", type: IDENTIFIER, position: 34:45}
+{token: ".", type: PUNCTUATOR, position: 34:50}
+{token: "categories", type: IDENTIFIER, position: 34:51}
+{token: ".", type: PUNCTUATOR, position: 34:61}
+{token: "length", type: IDENTIFIER, position: 34:62}
+{token: ">", type: PUNCTUATOR, position: 34:68}
+{token: "0", type: NUMERIC_LITERAL, position: 34:70}
+{token: ")", type: PUNCTUATOR, position: 34:72}
+{token: "{", type: PUNCTUATOR, position: 34:73}
+{token: "\n", type: NEWLINE, position: 34:75}
+{token: "if", type: KEYWORD, position: 35:1}
+{token: "(", type: PUNCTUATOR, position: 35:9}
+{token: "$icon", type: IDENTIFIER, position: 35:11}
+{token: ")", type: PUNCTUATOR, position: 35:16}
+{token: "{", type: PUNCTUATOR, position: 35:17}
+{token: "\n", type: NEWLINE, position: 35:19}
+{token: "$icon", type: IDENTIFIER, position: 36:1}
+{token: ".", type: PUNCTUATOR, position: 36:14}
+{token: "children", type: IDENTIFIER, position: 36:15}
+{token: "(", type: PUNCTUATOR, position: 36:23}
+{token: "\"span\"", type: STRING_LITERAL, position: 36:24}
+{token: ")", type: PUNCTUATOR, position: 36:30}
+{token: ".", type: PUNCTUATOR, position: 36:31}
+{token: "addClass", type: IDENTIFIER, position: 36:32}
+{token: "(", type: PUNCTUATOR, position: 36:40}
+{token: "\"has-child\"", type: STRING_LITERAL, position: 36:41}
+{token: ")", type: PUNCTUATOR, position: 36:52}
+{token: ";", type: PUNCTUATOR, position: 36:53}
+{token: "\n", type: NEWLINE, position: 36:54}
+{token: "}", type: PUNCTUATOR, position: 37:1}
+{token: "\n", type: NEWLINE, position: 37:8}
+{token: "tmp", type: IDENTIFIER, position: 38:1}
+{token: "=", type: PUNCTUATOR, position: 38:10}
+{token: "$", type: IDENTIFIER, position: 38:12}
+{token: "(", type: PUNCTUATOR, position: 38:14}
+{token: "\"<ul></ul>\"", type: STRING_LITERAL, position: 38:15}
+{token: ")", type: PUNCTUATOR, position: 38:26}
+{token: ".", type: PUNCTUATOR, position: 38:27}
+{token: "appendTo", type: IDENTIFIER, position: 38:28}
+{token: "(", type: PUNCTUATOR, position: 38:36}
+{token: "$parent", type: IDENTIFIER, position: 38:37}
+{token: ")", type: PUNCTUATOR, position: 38:44}
+{token: ";", type: PUNCTUATOR, position: 38:45}
+{token: "\n", type: NEWLINE, position: 38:46}
+{token: "for", type: KEYWORD, position: 39:1}
+{token: "(", type: PUNCTUATOR, position: 39:10}
+{token: "var", type: KEYWORD, position: 39:12}
+{token: "i", type: IDENTIFIER, position: 39:15}
+{token: "in", type: KEYWORD, position: 39:17}
+{token: "elem", type: IDENTIFIER, position: 39:20}
+{token: "[", type: PUNCTUATOR, position: 39:25}
+{token: "\"categories\"", type: STRING_LITERAL, position: 39:26}
+{token: "]", type: PUNCTUATOR, position: 39:38}
+{token: ")", type: PUNCTUATOR, position: 39:39}
+{token: "{", type: PUNCTUATOR, position: 39:40}
+{token: "\n", type: NEWLINE, position: 39:42}
+{token: "var", type: KEYWORD, position: 40:1}
+{token: "child", type: IDENTIFIER, position: 40:12}
+{token: "=", type: PUNCTUATOR, position: 40:18}
+{token: "elem", type: IDENTIFIER, position: 40:20}
+{token: "[", type: PUNCTUATOR, position: 40:25}
+{token: "\"categories\"", type: STRING_LITERAL, position: 40:26}
+{token: "]", type: PUNCTUATOR, position: 40:38}
+{token: "[", type: PUNCTUATOR, position: 40:39}
+{token: "i", type: IDENTIFIER, position: 40:40}
+{token: "]", type: PUNCTUATOR, position: 40:41}
+{token: ";", type: PUNCTUATOR, position: 40:42}
+{token: "\n", type: NEWLINE, position: 40:43}
+{token: "var", type: KEYWORD, position: 41:1}
+{token: "$child", type: IDENTIFIER, position: 41:12}
+{token: "=", type: PUNCTUATOR, position: 41:19}
+{token: "$", type: IDENTIFIER, position: 41:21}
+{token: "(", type: PUNCTUATOR, position: 41:23}
+{token: "\"<li></li>\"", type: STRING_LITERAL, position: 41:24}
+{token: ")", type: PUNCTUATOR, position: 41:35}
+{token: ".", type: PUNCTUATOR, position: 41:36}
+{token: "html", type: IDENTIFIER, position: 41:37}
+{token: "(", type: PUNCTUATOR, position: 41:41}
+{token: "\"<a>\"", type: STRING_LITERAL, position: 41:42}
+{token: "+", type: PUNCTUATOR, position: 41:47}
+{token: "child", type: IDENTIFIER, position: 41:49}
+{token: ".", type: PUNCTUATOR, position: 41:55}
+{token: "name", type: IDENTIFIER, position: 41:56}
+{token: "+", type: PUNCTUATOR, position: 41:60}
+{token: "\"</a>\"", type: STRING_LITERAL, position: 41:62}
+{token: ")", type: PUNCTUATOR, position: 41:69}
+{token: ".", type: PUNCTUATOR, position: 41:70}
+{token: "data", type: IDENTIFIER, position: 41:71}
+{token: "(", type: PUNCTUATOR, position: 41:75}
+{token: "\"id\"", type: STRING_LITERAL, position: 41:76}
+{token: ",", type: PUNCTUATOR, position: 41:80}
+{token: "child", type: IDENTIFIER, position: 41:81}
+{token: ".", type: PUNCTUATOR, position: 41:87}
+{token: "id", type: IDENTIFIER, position: 41:88}
+{token: ")", type: PUNCTUATOR, position: 41:90}
+{token: ";", type: PUNCTUATOR, position: 41:91}
+{token: "\n", type: NEWLINE, position: 41:92}
+{token: "tmp", type: IDENTIFIER, position: 42:1}
+{token: ".", type: PUNCTUATOR, position: 42:12}
+{token: "append", type: IDENTIFIER, position: 42:13}
+{token: "(", type: PUNCTUATOR, position: 42:19}
+{token: "$child", type: IDENTIFIER, position: 42:20}
+{token: ")", type: PUNCTUATOR, position: 42:26}
+{token: ";", type: PUNCTUATOR, position: 42:27}
+{token: "\n", type: NEWLINE, position: 42:28}
+{token: "queue", type: IDENTIFIER, position: 43:1}
+{token: ".", type: PUNCTUATOR, position: 43:14}
+{token: "push", type: IDENTIFIER, position: 43:15}
+{token: "(", type: PUNCTUATOR, position: 43:19}
+{token: "{", type: PUNCTUATOR, position: 43:20}
+{token: "elem", type: IDENTIFIER, position: 43:21}
+{token: ":", type: PUNCTUATOR, position: 43:26}
+{token: "child", type: IDENTIFIER, position: 43:27}
+{token: ",", type: PUNCTUATOR, position: 43:33}
+{token: "jQuery", type: IDENTIFIER, position: 43:34}
+{token: ":", type: PUNCTUATOR, position: 43:41}
+{token: "$child", type: IDENTIFIER, position: 43:42}
+{token: "}", type: PUNCTUATOR, position: 43:49}
+{token: ")", type: PUNCTUATOR, position: 43:51}
+{token: ";", type: PUNCTUATOR, position: 43:52}
+{token: "\n", type: NEWLINE, position: 43:53}
+{token: "}", type: PUNCTUATOR, position: 44:1}
+{token: "\n", type: NEWLINE, position: 44:8}
+{token: "}", type: PUNCTUATOR, position: 45:1}
+{token: "\n", type: NEWLINE, position: 45:6}
+{token: "}", type: PUNCTUATOR, position: 46:1}
+{token: "\n", type: NEWLINE, position: 46:4}
+{token: "}", type: PUNCTUATOR, position: 47:1}
+
+####################
+ERRORS:
+
+
+####################
+SOURCE WITH NORMALIZED SPACES:
+
+/**
+ * Created by alex on 26.10.17.
+ */
+
+var apiServHost = "http://10.42.0.1:8008";
+
+function createTree($place, tree) {
+ if (!$place instanceof jQuery) {
+ throw new Error("Invalid 1st argument. It must be instance of jQuery");
+ }
+
+ var queue = [];
+ var $parent = $place,
+ $icon = null,
+ tmp,
+ next;
+
+ var elem = tree;
+ var start = true;
+
+ var x = .51e-10;
+
+ while (start || queue.length !== 0) {
+ if (queue.length > 0) {
+ next = queue.shift();
+ $parent = next.jQuery;
+ elem = next.elem;
+ if (start) start = false;
+ }
+ if (!start) {
+ $icon = $("<a><span class=\"fa category\"></span></a>");
+ $parent.prepend($icon);
+ }
+ if (elem.hasOwnProperty("categories") && elem.categories.length > 0) {
+ if ($icon) {
+ $icon.children("span").addClass("has-child");
+ }
+ tmp = $("<ul></ul>").appendTo($parent);
+ for (var i in elem["categories"]) {
+ var child = elem["categories"][i];
+ var $child = $("<li></li>").html("<a>" + child.name + "</a>").data("id", child.id);
+ tmp.append($child);
+ queue.push({ elem: child, jQuery: $child });
+ }
+ }
+ }
+}
+
+####################
+SOURCE WITHOUT COMMENTS:
+
+
+
+var apiServHost = "http://10.42.0.1:8008";
+
+function createTree($place, tree) {
+  if (!$place instanceof jQuery) {
+    throw new Error("Invalid 1st argument. It must be instance of jQuery");
+  }
+
+  var queue = [];
+  var $parent = $place,
+    $icon = null,
+    tmp,
+    next;
+
+  var elem = tree;
+  var start = true;
+
+  var x = .51e-10;
+
+  while (start || queue.length !== 0) {
+    if (queue.length > 0) {
+      next = queue.shift();
+      $parent = next.jQuery;
+      elem = next.elem;
+      if (start) start = false;
+    }
+    if (!start) {
+      $icon = $("<a><span class=\"fa category\"></span></a>");
+      $parent.prepend($icon);
+    }
+    if (elem.hasOwnProperty("categories") && elem.categories.length > 0) {
+      if ($icon) {
+        $icon.children("span").addClass("has-child");
+      }
+      tmp = $("<ul></ul>").appendTo($parent);
+      for (var i in elem["categories"]) {
+        var child = elem["categories"][i];
+        var $child = $("<li></li>").html("<a>" + child.name + "</a>").data("id", child.id);
+        tmp.append($child);
+        queue.push({ elem: child, jQuery: $child });
+      }
+    }
+  }
+}
+
+####################
+IDENTIFIERS:
+
+{token: "apiServHost", type: IDENTIFIER, position: 5:4}
+{token: "createTree", type: IDENTIFIER, position: 7:9}
+{token: "$place", type: IDENTIFIER, position: 7:21}
+{token: "tree", type: IDENTIFIER, position: 7:28}
+{token: "$place", type: IDENTIFIER, position: 8:8}
+{token: "jQuery", type: IDENTIFIER, position: 8:25}
+{token: "Error", type: IDENTIFIER, position: 9:14}
+{token: "queue", type: IDENTIFIER, position: 12:6}
+{token: "$parent", type: IDENTIFIER, position: 13:6}
+{token: "$place", type: IDENTIFIER, position: 13:16}
+{token: "$icon", type: IDENTIFIER, position: 14:1}
+{token: "tmp", type: IDENTIFIER, position: 15:1}
+{token: "next", type: IDENTIFIER, position: 16:1}
+{token: "elem", type: IDENTIFIER, position: 18:6}
+{token: "tree", type: IDENTIFIER, position: 18:13}
+{token: "start", type: IDENTIFIER, position: 19:6}
+{token: "x", type: IDENTIFIER, position: 21:6}
+{token: "start", type: IDENTIFIER, position: 23:10}
+{token: "queue", type: IDENTIFIER, position: 23:18}
+{token: "length", type: IDENTIFIER, position: 23:25}
+{token: "queue", type: IDENTIFIER, position: 24:9}
+{token: "length", type: IDENTIFIER, position: 24:15}
+{token: "next", type: IDENTIFIER, position: 25:1}
+{token: "queue", type: IDENTIFIER, position: 25:13}
+{token: "shift", type: IDENTIFIER, position: 25:20}
+{token: "$parent", type: IDENTIFIER, position: 26:1}
+{token: "next", type: IDENTIFIER, position: 26:16}
+{token: "jQuery", type: IDENTIFIER, position: 26:22}
+{token: "elem", type: IDENTIFIER, position: 27:1}
+{token: "next", type: IDENTIFIER, position: 27:13}
+{token: "elem", type: IDENTIFIER, position: 27:19}
+{token: "start", type: IDENTIFIER, position: 28:11}
+{token: "start", type: IDENTIFIER, position: 28:17}
+{token: "start", type: IDENTIFIER, position: 30:10}
+{token: "$icon", type: IDENTIFIER, position: 31:1}
+{token: "$", type: IDENTIFIER, position: 31:14}
+{token: "$parent", type: IDENTIFIER, position: 32:1}
+{token: "prepend", type: IDENTIFIER, position: 32:15}
+{token: "$icon", type: IDENTIFIER, position: 32:23}
+{token: "elem", type: IDENTIFIER, position: 34:9}
+{token: "hasOwnProperty", type: IDENTIFIER, position: 34:14}
+{token: "elem", type: IDENTIFIER, position: 34:45}
+{token: "categories", type: IDENTIFIER, position: 34:51}
+{token: "length", type: IDENTIFIER, position: 34:62}
+{token: "$icon", type: IDENTIFIER, position: 35:11}
+{token: "$icon", type: IDENTIFIER, position: 36:1}
+{token: "children", type: IDENTIFIER, position: 36:15}
+{token: "addClass", type: IDENTIFIER, position: 36:32}
+{token: "tmp", type: IDENTIFIER, position: 38:1}
+{token: "$", type: IDENTIFIER, position: 38:12}
+{token: "appendTo", type: IDENTIFIER, position: 38:28}
+{token: "$parent", type: IDENTIFIER, position: 38:37}
+{token: "i", type: IDENTIFIER, position: 39:15}
+{token: "elem", type: IDENTIFIER, position: 39:20}
+{token: "child", type: IDENTIFIER, position: 40:12}
+{token: "elem", type: IDENTIFIER, position: 40:20}
+{token: "i", type: IDENTIFIER, position: 40:40}
+{token: "$child", type: IDENTIFIER, position: 41:12}
+{token: "$", type: IDENTIFIER, position: 41:21}
+{token: "html", type: IDENTIFIER, position: 41:37}
+{token: "child", type: IDENTIFIER, position: 41:49}
+{token: "name", type: IDENTIFIER, position: 41:56}
+{token: "data", type: IDENTIFIER, position: 41:71}
+{token: "child", type: IDENTIFIER, position: 41:81}
+{token: "id", type: IDENTIFIER, position: 41:88}
+{token: "tmp", type: IDENTIFIER, position: 42:1}
+{token: "append", type: IDENTIFIER, position: 42:13}
+{token: "$child", type: IDENTIFIER, position: 42:20}
+{token: "queue", type: IDENTIFIER, position: 43:1}
+{token: "push", type: IDENTIFIER, position: 43:15}
+{token: "elem", type: IDENTIFIER, position: 43:21}
+{token: "child", type: IDENTIFIER, position: 43:27}
+{token: "jQuery", type: IDENTIFIER, position: 43:34}
+{token: "$child", type: IDENTIFIER, position: 43:42}

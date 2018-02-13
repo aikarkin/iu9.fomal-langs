@@ -1,0 +1,11 @@
+digraph task2.1 {
+  rankdir="LR";
+  
+  A;
+  B; 
+  F;
+  
+  A -> B [label="a, b, c"];
+  A -> F [label="e"];
+  B -> A [label="a, b, c"];
+}
